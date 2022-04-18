@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}purchase-history-all{% endblock %}
+{% block home-nav %}<a href="../employee">Home</a>{% endblock %}
+{% block profile-nav %} <a href="../profile/{{ user.id }}">Welcome {{ user.username }}</a> {% endblock %}
+{% block subhead %}Purchase History{% endblock %}
+{% block content %}
+
+{% if purchase_obj.0 is None %}
+    <h3 class="no-data">No Orders available</h3>
+    {% else %} 
+    <div class="table-div">
+        <table class="table emp-data-table">
+            <thead class="table-thead">
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Medicine Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            {% for purchace in purchase_obj %}
+            <tbody>
+                <tr>
+                    <td>{{purchace.username}}</td>
+                    <td>{{purchace.date}}</td>
+                    <td>{{purchace.name}}</td>
+                    <td>{{purchace.quantity}}</td>
+                    <td>{{purchace.price}}</td>
+                </tr>
+                
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+{% endif %}
+<h4><a class="btn" href="../employee">Back</a></h4> 
+{% endblock %}

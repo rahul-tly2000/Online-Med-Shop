@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}med-data{% endblock %}
+{% block home-nav %} <a href="../employee">Home</a> {% endblock %}
+{% block profile-nav %} <a href="../profile_emp/{{user.id}}">Welcome {{ user.username }}</a> {% endblock %}
+{% block subhead %}Pending Purchase{% endblock %}
+{% block content %}
+
+    {% if pending_obj.0 is None %}
+    <h3 class="no-data">No pending purchace available</h3>
+    {% else %}
+
+    <div class="table-div">
+        <table class="table emp-data-table">
+            <thead class="table-thead">
+                <tr>
+                    <th>User Name</th>
+                    <th>Medicine Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+
+            {% for obj in pending_obj %}
+            <tbody>
+                <tr>
+                    <td>{{obj.username}}</td>
+                    <td>{{obj.name}}</td>
+                    <td>{{obj.quantity}}</td>
+                    <td>{{obj.price}}</td>
+                    <td><a class="btn btn-approve" href="purchace_approve/{{obj.id}}">approve</a></td>
+                    <td><a class="btn btn-reject" href="purchace_reject/{{obj.id}}">reject</a></td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+    <h4><a class="btn" href="employee">Back</a></h4>
+    
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}med-req{% endblock %}
+{% block home-nav %} <a href="../employee">Home</a> {% endblock %}
+{% block profile-nav %} <a href="../profile_emp/{{user.id}}">Welcome {{ user.username }}</a> {% endblock %}
+{% block subhead %}Add more stock{% endblock %}
+{% block content %}
+
+    <form action="" method="post" class="login-form">
+        {% csrf_token %}
+        <div class="table-div">
+            <table class="table emp-data-table form-table">
+            <tr>
+                <td><label for="name">Name</label></td>
+                <td><input type="text" value="{{med_obj.name}}" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="name">Current Stock</label></td>
+                <td><input type="text" value="{{med_obj.stock}}" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="name">Price</label></td>
+                <td><input type="text" value="{{med_obj.price}}" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="name">Requested Stock</label></td>
+                <td><input type="text" name="req_stock" required></td>
+            </tr>
+            <tr>
+                <div class="form-btn-div">
+                    <td><a class="btn btn-login" href="../medicine_data">back</a></td>
+                    <td><button class="btn btn-register" type="submit">Submit</button></td>
+                </div>
+            </tr>
+        </table>
+    </div>
+    </form>
+
+{% endblock %}

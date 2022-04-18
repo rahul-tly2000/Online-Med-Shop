@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}med-data{% endblock %}
+{% block home-nav %} <a href="../employee">Home</a> {% endblock %}
+{% block profile-nav %} <a href="../profile_emp/{{user.id}}">Welcome {{ user.username }}</a> {% endblock %}
+{% block subhead %}Medicine Details{% endblock %}
+{% block content %}
+
+    {% if medicine_obj.0 is None %}
+    <h3 class="no-data">No Employee</h3>
+    {% else %}
+    <div class="table-div">
+        <table class="table emp-data-table">
+            <thead class="table-thead"> 
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Description</th>
+                    <th>Sell</th>
+                    <th>Income</th>
+                    <th>Requested Stock</th>
+                </tr>
+            </thead>
+ 
+            {% for med in medicine_obj %}
+            <tbody>
+                <tr>
+                    <td>{{med.name}}</td>
+                    <td>{{med.price}}</td>
+                    <td>{{med.stock}}</td>
+                    <td>{{med.discription}}</td>
+                    <td>{{med.sell}}</td>
+                    <td>{{med.income}}</td>
+                    <td>{{med.requested_stock}}</td>
+                    <td><a class="btn btn-approve" href="edit_med/{{med.id}}">edit</a></td>
+                    <td><a class="btn btn-approve" href="med_req/{{med.id}}">request for more</a></td>
+                </tr>
+            </tbody>     
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+
+
+
+    <h3 class="sub-head login-sub-head">New Stock</h3>
+    {% if approve_med.0 is None %}
+    <h3 class="no-data">No approved medicine available</h3>
+    {% else %}
+    <div class="table-div">
+        <table class="table emp-data-table">
+            <thead class="table-thead"> 
+                <tr>
+                    <th>Name</th>
+                    <th>Approved Stock</th>
+                </tr>
+            </thead>
+            {% for med in approve_med %}
+            <tbody>
+                <tr>
+                    <td>{{ med.name }}</td>
+                    <td>{{ med.verify_stock }}</td>
+                    <td><a class="btn btn-approve" href="approved_med/{{med.id}}">Add</a></td> 
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+    <h4><a class="btn btn-login" href="employee">Back</a></h4>
+    
+{% endblock %} 

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}admin{% endblock %}
+{% block home-nav %} <a href="">Home</a> {% endblock %}
+{% block subhead %}Welcome Admin{% endblock %}
+{% block content %}
+    <div class="page-data">
+
+        <h3 class="page-elements"><a class="link" href="emp_data">Employee Data</a></h3>
+        <h3 class="page-elements"><a class="link" href="emp_req">Unauthorized Employee Data</a></h3>
+        <h3 class="page-elements"><a class="link" href="aprrove_stock">Requested Medicine</a></h3>
+        <a class="btn btn-login" href="logout">Logout</a>
+
+    </div>
+{% endblock %} 

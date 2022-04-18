@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header class="main-header selector">
+        <nav class="nav main-nav">
+            <li>{% block home-nav %} {% endblock %}</li>
+            {% if user.username %}  
+            <li>{% block profile-nav %} {% endblock %}</li>         
+           
+                {% if user.is_user %}
+                <li>{% block order-block %} {% endblock %}</li>
+                {% endif %}
+            <li><a href="logout">Logout</a></li>
+            {% else %}
+            <li><a href="login/">Login</a></li>
+            <li><a href="register/">Register</a></li>
+            {% endif %}
+        </nav>
+        <h1 class="store-name store-name-header">ONLINE MEDICAL STORE</h1>
+    </header>
+    <h3 class="sub-head login-sub-head">{% block subhead %} {% endblock %}</h3>
+    {% block content %}{% endblock %}
+    <footer class="main-footer selector">
+        <h1 class="store-name store-name-footer">ONLINE MEDICAL STORE</h1>
+        <nav class="nav foot-nav">
+            <li class="footer-logo"><a href=""><img class="logo-footer" src="{% static 'img/insta-logo.jpg'%}"></a></li>
+            <li class="footer-logo"><a href=""><img class="logo-footer" src="{% static 'img/fb-logo.jpg'%}"></a></li>
+            <li class="footer-logo"><a href=""><img class="logo-footer" src="{% static 'img/twitter-logo.jpg'%}"></a></li>
+        </nav>
+    </footer>
+</body>
+</html>  

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block title %} home {% endblock %}
+{% block home-nav %} <a href="">Home</a> {% endblock %}
+{% block content %}
+<h1 class="sub-head med-sub-head">MEDICINE</h1>
+
+<div class="med-items">
+{% for med in med_obj %}
+    <div class="med-item">
+        <h3 class="med-title">{{med.name}}</h3>
+        <div class="med-img-container"> 
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img class="med-img" src="{{ med.photo_link }}">
+                    </div>
+                    <div class="flip-card-back">
+                        <p>{{ med.discription }}</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="med-item-details">
+                <span class="med-price">${{med.price}}</span>
+                {% if med.stock < 1 %}
+                    <span class="left">Out of Stock</span>
+                {% else %}
+                    {% if med.stock < 20 %}
+                    <span class="left"> Hurry only {{med.stock}} left!!! </span>
+                    {% endif %}
+                    <a class="add-to-cart btn" onclick="login()" >Add</a>
+                    <script>
+                        function login() {
+                            if (window.confirm('Login for purchse'))
+                            {
+                                document.location = 'login/'
+                            }
+                        }
+                    </script>
+                {% endif %}
+            </div> 
+
+
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+
+<!-- <h1 class="sub-head med-sub-head">CART</h1>
+{% if cart_item.0 is not None %}
+<div class="cart-container">
+    <div class="cart-items">
+        <div class="cart-row">
+            <span class="cart-item cart-header cart-column">ITEM</span>
+            <span class="cart-price cart-header cart-column">PRICE</span>
+            <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+        </div>
+
+        {% for med in cart_item %}
+        <div class="cart-row">
+            <div class="cart-item cart-column">
+                <img class="cart-item-img" src="{{med.photo_link}}" width="100" height="100">       
+                <span class="cart-item-title">{{med.name}}</span>
+            </div>
+            {% for purchase in purchase_obj %}
+            {% if purchase.medicine_id == med.id %}
+            <span class="cart-price cart-column cart-quantity-price">${{purchase.price}}</span>
+            <div class="cart-quantity cart-column">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input class="cart-quantity-input" type="number" name="quantity" value="{{purchase.quantity}}">
+                    <button class="cart-update-tik" type="submit">☑</button>
+                </form>
+                
+                <a href="" class="btn cart-btn">REMOVE</a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+    </div>
+    <div class="cart-total">
+        <span class="cart-total-title">Total</span>
+        <span class="cart-total-price">${{tot_price}}</span>
+    </div>
+
+    <a href="" class="btn btn-purchase">Purchase</a>
+</div> -->
+
+<!-- {% else %}
+
+<div class="no-items-cart">
+    <h2>Your cart is empty!!!</h2>
+    <a class="btn btn-reject" href="">ADD ITEMS TO CART</a>
+</div> -->
+
+<!-- 
+{% endif %} -->
+
+{% endblock %}

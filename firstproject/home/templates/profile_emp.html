@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}emp-profile{% endblock %}
+{% block home-nav %} <a href="../employee">Home</a> {% endblock %}
+{% block profile-nav %} <a href="">Welcome {{ user.username }}</a> {% endblock %}
+{% block subhead %} Profile {% endblock %}
+{% block content %}
+
+<div class="table-div">
+    <table class="table emp-data-table form-table">
+        <tr>
+            <td><label for="">First Name</label></td>
+            <td><label for="">{{emp.first_name}}</label></td>
+        </tr>
+        <tr>
+            <td><label for="">Last Name </label></td>
+            <td><label for="">{{emp.last_name}}</label></td>
+        </tr>
+        <tr>
+            <td><label for="">Username</label></td>
+            <td><label for="">{{emp.username}}</label></td>
+        </tr>
+        <tr>
+            <td><label for="">Email</label></td>
+            <td><label for="">{{emp.email}}</label></td>
+        </tr>
+        <tr>
+            <td><label for="">Age</label></td>
+            <td><label for="">{{emp.age}}</label></td>
+        </tr>
+        <tr>
+            <td><label for="">Phone Number</label></td>
+            <td><label for="">{{emp.phone_number}}</label></td>
+        </tr>
+        <tr>
+            <td><label for="">Salary</label></td>
+            <td><label for="">{{emp.salary}}</label></td>
+        </tr>
+    </table>
+</div>      
+
+<h4><a href="../employee">Back</a></h4>
+{% endblock %} 

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}employee{% endblock %}
+{% block home-nav %} <a href="">Home</a> {% endblock %}
+{% block profile-nav %} <a href="profile_emp/{{user.id}}">Welcome {{ user.username }}</a> {% endblock %}
+{% block subhead %}Welcome {{user.first_name}}{% endblock %}
+{% block content %}
+<div class="page-data">
+
+    <h3 class="page-elements"><a class="link" href="medicine">Add new medicine</a></h3>
+
+    <h3 class="page-elements"><a class="link" href="medicine_data">Medicine details</a></h3>
+
+    <h3 class="page-elements"><a class="link" href="user_data">User Data</a></h3>
+
+    <h3 class="page-elements"><a class="link" href="pending_purchace">Requested Medicine</a></h3>
+
+    <h3 class="page-elements"><a class="link" href="purchase_history_all">Purchase history</a></h3>
+
+    <a class="btn btn-login" href="logout">Logout</a>
+
+</div>
+
+{% endblock %} 

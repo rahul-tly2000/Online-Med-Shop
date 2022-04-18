@@ -1,0 +1,24 @@
+{% extends 'base2.html' %}
+{% block title %}login{% endblock %}
+{% block subhead %}Login{% endblock %}
+{% block content %}
+<form action="" method="post" class="login-form">
+    {% csrf_token %}
+    <div class="table-div">
+        <table class="table emp-data-table form-table form-div">
+            {{form.as_table}}
+        </table>
+        <div class="form-btn-div form-btn">
+            <h4>
+                <button class="btn btn-login" type="submit">Login</button>
+                <a href="/register" class="btn btn-register">Register</a>
+            </h4>
+        </div>
+    </div>
+</form>
+<div class="message">
+    {% for message in messages %}                  
+        <h4 class="message-text">{{ message }}</h4>
+    {% endfor %}
+</div>
+{% endblock %} 

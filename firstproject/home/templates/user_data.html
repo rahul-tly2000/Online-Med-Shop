@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}user-data{% endblock %}
+{% block home-nav %} <a href="../employee">Home</a> {% endblock %}
+{% block profile-nav %} <a href="../profile_emp/{{user.id}}">Welcome {{ user.username }}</a> {% endblock %}
+{% block subhead %}User Details{% endblock %}
+{% block content %}
+
+    {% if user_obj.0 is None %}
+    <h3 class="no-data">No user available</h3>
+    {% else %}
+    
+    <div class="table-div">
+        <table class="table emp-data-table">
+            <thead class="table-thead">
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead>
+
+            {% for user in user_obj %}
+            <tbody>
+                <tr>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.age }}</td>
+                    <td>{{ user.phone_number }}</td>
+                    <td><a class="btn btn-approve" href="user_edit/{{user.id}}">edit</a></td>
+                </tr>
+            </tbody>
+            {% endfor %}  
+        </table>
+    </div>
+    {% endif %}
+
+    <h3 class="sub-head login-sub-head">Unauthorized User Details</h3>
+    {% if unauth_user_obj.0 is None %}
+    <h3 class="no-data">No unauthorized user available</h3>
+    {% else %}
+    <div class="table-div">
+        <table class="table emp-data-table">
+            <thead class="table-thead">
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead>
+
+            {% for user in unauth_user_obj %}
+            <tbody>
+                <tr>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.age }}</td>
+                    <td>{{ user.phone_number }}</td>
+                    <td><a class="btn btn-approve" href="user_approve/{{user.id}}">approve</a></td>
+                    <td><a class="btn btn-reject" href="user_reject/{{user.id}}">reject</a></td>
+                </tr>
+            </tbody>
+            {% endfor %}
+
+        </table>
+    </div>
+    {% endif %}
+
+
+    <h4><a class="btn" href="../employee">Back</a></h4>
+    {% endblock %}

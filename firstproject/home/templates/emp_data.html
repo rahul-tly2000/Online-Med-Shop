@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}emp-data{% endblock %}
+{% block home-nav %} <a href="../admin">Home</a> {% endblock %}
+{% block subhead %}Employee Details{% endblock %}
+{% block content %}
+
+    {% if emp_obj.0 is None %}
+    <h3 class="no-data">No Employee</h3>
+    {% else %}
+    
+    <div class="table-div">
+    <table class="table emp-data-table">
+        <thead class="table-thead"> 
+            <tr>
+                <th>First name</th> 
+                <th>Last name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Phone Number</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        
+        {% for emp in emp_obj %}
+        
+        <tbody>
+            <tr>
+                <td>{{ emp.first_name }}</td>
+                <td>{{ emp.last_name }}</td>
+                <td>{{ emp.username }}</td>
+                <td>{{ emp.email }}</td>
+                <td>{{ emp.age }}</td>
+                <td>{{ emp.phone_number }}</td>
+                <td>{{ emp.salary }}</td>
+                <td><a class="btn btn-approve" href="emp_edit/{{emp.id}}">edit</a></td>
+                <td><a class="btn btn-reject" href="emp_remove/{{emp_obj.id}}">Remove</a></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        
+    </table>
+</div>
+    {% endif %}
+    <h4><a class="btn btn-login" href="admin">Back</a></h4>
+
+{% endblock %}
+
+
+

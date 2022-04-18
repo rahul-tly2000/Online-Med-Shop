@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}med-edit{% endblock %}
+{% block home-nav %} <a href="../employee">Home</a> {% endblock %}
+{% block profile-nav %} <a href="../profile_emp/{{user.id}}">Welcome {{ user.username }}</a> {% endblock %}
+{% block subhead %}Edit Medicine Details{% endblock %}
+{% block content %}
+
+    <form action="" method="post" class="login-form">
+        {% csrf_token %}
+        <div class="table-div"> 
+            <table class="table emp-data-table form-table">
+            <tr>
+                <td><label for="name">Name</label></td>
+                <td><input type="text" name="name" value="{{med_obj.name}}"></td>
+            </tr>
+            <tr>
+                <td><label for="name">Price</label></td>
+                <td><input type="text" name="price" value="{{med_obj.price}}"></td>
+            </tr>
+            <tr>
+                <td><label for="name">Discription</label></td>
+                <td><input type="text" name="discription" value="{{med_obj.discription}}"></td>
+            </tr>
+            <tr>
+                <td><label for="name">Link</label></td>
+                <td><input type="text" name="link" value="{{med_obj.photo_link}}"></td>
+            </tr>
+
+            <div class="form-btn-div">
+                <td><a class="btn btn-register" href="../medicine_data">Back</a></td>
+                <td><button class="btn" type="submit">Confirm</button></td>
+            </div>
+            
+        </table>
+        
+    </div>
+</form>
+
+{% endblock %}

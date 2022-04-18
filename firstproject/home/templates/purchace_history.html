@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}purchase-history{% endblock %}
+{% block home-nav %}<a href="../user">Home</a>{% endblock %}
+{% block profile-nav %} <a href="../profile/{{ user.id }}">Welcome {{ user.username }}</a> {% endblock %}
+{% block order-block %} <a href="">Order Details</a> {% endblock %}
+{% block subhead %}My Order{% endblock %}
+{% block content %}
+
+{% if pending_obj.0 is None %}
+    <h3 class="no-data">No Orders available</h3>
+    {% else %} 
+    <div class="table-div">
+        <table class="table emp-data-table">
+            <thead class="table-thead">
+                <tr>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            {% for purchace in pending_obj %}
+            <tbody>
+                <tr>
+                    <td>{{purchace.date}}</td>
+                    <td>{{purchace.name}}</td>
+                    <td>{{purchace.quantity}}</td>
+                    <td>{{purchace.price}}</td>
+                    <td><a class="btn-status btn-reject" href="clear_one/{{purchace.id}}">Cancel</a></td>
+                </tr>
+                
+            </tbody>
+            {% endfor %}
+        </table>
+        <h4><a class="btn btn-clear-purchase" href="clear_all_order/{{ user.id }}">Cancel all order</a></h4>
+    </div>
+{% endif %}
+
+
+
+
+<h3 class="sub-head login-sub-head">Purchase History</h3>
+    {% if purchace_obj.0 is None %}
+    <h3 class="no-data">No History available</h3>
+    {% else %} 
+    <div class="table-div">
+        <table class="table emp-data-table">
+            <thead class="table-thead">
+                <tr>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            {% for purchace in purchace_obj %}
+            <tbody>
+                <tr>
+                    <td>{{purchace.date}}</td>
+                    <td>{{purchace.name}}</td>
+                    <td>{{purchace.quantity}}</td>
+                    <td>{{purchace.price}}</td>
+                    {% if purchace.status == 'Completed' %}
+                    <td><span class=" btn-approve btn-status">{{purchace.status}}</span></td>
+                    {% elif purchace.status == 'Rejected' %}
+                    <td><span class=" btn-reject btn-status">{{purchace.status}}</span></td>
+                    {% endif %}
+                    <td><a class="link" href="clear_one/{{purchace.id}}">❌</a></td>
+                </tr>
+                
+            </tbody>
+            {% endfor %}
+        </table>
+        <h4><a class="btn btn-clear-purchase" href="clear_all/{{ user.id }}">Clear Purchase History</a></h4>
+    </div>
+{% endif %}
+    
+<h4><a class="btn" href="../user">Back</a></h4>  
+{% endblock %}

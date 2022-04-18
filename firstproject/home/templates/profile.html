@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}profile{% endblock %}
+{% block home-nav %}<a href="../user">Home</a>{% endblock %}
+{% block profile-nav %} <a href="">Welcome {{ user.username }}</a> {% endblock %}
+{% block order-block %} <a href="../purchace_history">Order Details</a> {% endblock %}
+{% block subhead %}Profile{% endblock %}
+{% block content %}
+
+    <div class="table-div">
+        <table class="table emp-data-table form-table">
+            <tr>
+                <td><label for="">First Name</label></td>
+                <td><label for="">{{user.first_name}}</label></td>
+            </tr>
+            <tr>
+                <td><label for="">Last Name </label></td>
+                <td><label for="">{{user.last_name}}</label></td>
+            </tr>
+            <tr>
+                <td><label for="">Username</label></td>
+                <td><label for="">{{user.username}}</label></td>
+            </tr>
+            <tr>
+                <td><label for="">Email</label></td>
+                <td><label for="">{{user.email}}</label></td>
+            </tr>
+            <tr>
+                <td><label for="">Age</label></td>
+                <td><label for="">{{user.age}}</label></td>
+            </tr>
+            <tr>
+                <td><label for="">Phone Number</label></td>
+                <td><label for="">{{user.phone_number}}</label></td>
+            </tr>
+        </table>
+    </div>
+            
+   
+
+    <h4><a href="../user">Back</a></h4>
+
+{% endblock %}

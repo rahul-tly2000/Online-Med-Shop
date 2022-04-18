@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}admin{% endblock %}
+{% block home-nav %} <a href="../admin">Home</a> {% endblock %}
+{% block subhead %}Requested Medicine{% endblock %}
+{% block content %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {% if med_obj.0 is None %}
+        <h3 class="no-data">No requested medicine</h3>
+        {% else %}
+        <div class="table-div">
+            <table  class="table emp-data-table">
+                <thead class="table-thead">
+                    <tr>
+                        <th>Name</th>
+                        <th>Current Stock</th>
+                        <th>Price</th>
+                        <th>Requested Stock</th>
+                    </tr>
+                </thead>
+                {% for med in med_obj %}
+                <tbody>
+                    <tr>
+                        <td>{{med.name}}</td>
+                        <td>{{med.stock}}</td>
+                        <td>{{med.price}}</td>
+                        <td>{{med.requested_stock}}</td>
+                        <td><a class="btn btn-approve" href="verify_stock/{{med.id}}">Approve</a></td>
+                        <td><a class="btn btn-reject" href="reject_stock/{{med.id}}">Reject</a></td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
+        <h4><a class="btn btn-login" href="admin">back</a></h4>
+    </form> 
+{% endblock %} 
